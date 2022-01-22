@@ -17,7 +17,7 @@ router.post("/student_id", authorization, async (req, res) => {
     );
 
     if (check_id.rows.length > 0) {
-      return res.status(409).json("Student id already exist");
+      return res.status(409).json("Student ID Already Exist");
     } else if (check_id.rows.length === 0) {
       const create_id = await pool.query(
         "INSERT INTO add_id(id, student_id) VALUES($1,$2) RETURNING *",
@@ -184,7 +184,7 @@ router.post("/research", authorization, async (req, res) => {
     );
 
     if (check_title.rows.length > 0) {
-      return res.status(409).json("Research title already exist");
+      return res.status(409).json("Research Title Already Exist");
     } else if (check_title.rows.length === 0) {
       const add_research = await pool.query(
         `INSERT INTO research(research_id, research_title, research_author, research_year, research_abstract, research_keywords, research_url, research_college, research_program) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
@@ -231,7 +231,7 @@ router.put("/research_url", authorization, async (req, res) => {
       [id, url]
     );
 
-    res.json("ADDED SUCCESSFULY");
+    res.json("Added Successfully");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -314,7 +314,7 @@ router.post("/research_incharge_id", authorization, async (req, res) => {
     );
 
     if (check_id.rows.length > 0) {
-      return res.status(409).json("Research incharge id already exist!");
+      return res.status(409).json("Research Incharge ID Already Exist!");
     } else if (check_id.rows.length === 0) {
       const create_id = await pool.query(
         "INSERT INTO research_incharge_id(id) VALUES($1) RETURNING *",
@@ -353,7 +353,7 @@ router.put("/pending_research", authorization, async (req, res) => {
       [id]
     );
 
-    res.json("Rejected research successfully!");
+    res.json("Rejected Research Successfully!");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

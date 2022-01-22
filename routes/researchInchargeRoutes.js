@@ -26,7 +26,7 @@ router.post("/research", authorization, async (req, res) => {
     );
 
     if (check_title.rows.length > 0) {
-      return res.status(409).json("Research title already exist");
+      return res.status(409).json("Research Title Already Exist");
     } else if (check_title.rows.length === 0) {
       const add_research = await pool.query(
         `INSERT INTO pending_research(research_id, research_title, research_author, research_year, research_abstract, research_keywords, research_url, research_college, research_program, research_status, ri_id, ri_name) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`,
@@ -65,7 +65,7 @@ router.put("/research_url", authorization, async (req, res) => {
       [id, url]
     );
 
-    res.json("RESEARCH ADDED SUCCESSFULY");
+    res.json("Research Added Successfully");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -96,7 +96,7 @@ router.delete("/research/:id", authorization, async (req, res) => {
     await pool.query("DELETE FROM pending_research WHERE research_id = $1", [
       id,
     ]);
-    res.json("Deleted successfully!");
+    res.json("Deleted Successfully!");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

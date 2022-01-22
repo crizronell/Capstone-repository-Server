@@ -52,7 +52,7 @@ router.put("/profile_pass", authorization, async (req, res) => {
     );
 
     if (!validPassword) {
-      return res.status(403).json("Old Password is incorrect");
+      return res.status(403).json("Old Password is Incorrect");
     } else {
       //bcrypt the user password
       const saltRound = 10;
@@ -92,6 +92,5 @@ router.put("/profile_name", authorization, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
 
 module.exports = router;

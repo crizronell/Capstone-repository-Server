@@ -18,7 +18,7 @@ router.post("/admin-register", async (req, res) => {
     );
 
     if (check_admin.rows.length !== 0) {
-      return res.status(403).json({ message: "username already exists" });
+      return res.status(403).json({ message: "Username Already Exists" });
     } else {
       //bcrypt the user password
       const saltRound = 10;
@@ -52,7 +52,7 @@ router.post("/admin-login", async (req, res) => {
       username,
     ]);
     if (admin.rows.length === 0) {
-      return res.status(403).json({ message: "Username  does not exist" });
+      return res.status(403).json({ message: "Username  Does Not Exist" });
     } else {
       //check if the incoming password is the same in the database password
       const validPassword = await bcrypt.compare(
@@ -61,7 +61,7 @@ router.post("/admin-login", async (req, res) => {
       );
 
       if (!validPassword) {
-        return res.status(403).json({ message: "Password is incorrect" });
+        return res.status(403).json({ message: "Password is Incorrect" });
       }
 
       //give them the jwt token
@@ -92,7 +92,7 @@ router.post("/register", async (req, res) => {
     );
 
     if (check_user.rows.length !== 0) {
-      return res.status(403).json({ message: "user already exists" });
+      return res.status(403).json({ message: "User Already Exists" });
     } else if (check_id.rows.length > 0) {
       //bcrypt the user password
       const saltRound = 10;
@@ -134,7 +134,7 @@ router.post("/login", async (req, res) => {
     );
 
     if (user.rows.length === 0) {
-      return res.status(403).json({ message: "Username  does not exist" });
+      return res.status(403).json({ message: "Username  Does Not Exist" });
     } else {
       //check if the incoming password is the same in the database password
       const validPassword = await bcrypt.compare(
@@ -143,7 +143,7 @@ router.post("/login", async (req, res) => {
       );
 
       if (!validPassword) {
-        return res.status(403).json({ message: "Password is incorrect" });
+        return res.status(403).json({ message: "Password is Incorrect" });
       }
 
       //give them the jwt token
@@ -186,7 +186,7 @@ router.post("/ri/register", async (req, res) => {
     if (check_ri.rows.length !== 0) {
       return res
         .status(403)
-        .json({ message: "research incharge already exists" });
+        .json({ message: "Research Incharge Already Exists" });
     } else if (check_id.rows.length > 0) {
       //bcrypt the user password
       const saltRound = 10;
@@ -224,13 +224,13 @@ router.post("/ri/login", async (req, res) => {
     );
 
     if (check_ri.rows.length === 0) {
-      return res.status(403).json({ message: "Username is does not exist" });
+      return res.status(403).json({ message: "Username  Does Not Exist" });
     } else if (username === "admin") {
       if (password === "adminpass") {
         const token = jwtGenerator("admin");
         res.json({ token });
       } else {
-        return res.status(403).json({ message: "Password is incorrect" });
+        return res.status(403).json({ message: "Password is Incorrect" });
       }
     } else {
       //check if the incoming password is the same in the database password
@@ -240,7 +240,7 @@ router.post("/ri/login", async (req, res) => {
       );
 
       if (!validPassword) {
-        return res.status(403).json({ message: "Password is incorrect" });
+        return res.status(403).json({ message: "Password is Incorrect" });
       }
 
       //give them the jwt token
